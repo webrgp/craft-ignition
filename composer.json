@@ -1,6 +1,6 @@
 {
   "name": "webrgp/craft-ignition",
-  "description": "Error handling alternative for Craft CMS that uses Ignition for better developer experience.",
+  "description": "Ignition error handling alternative for Craft CMS.",
   "version": "1.0.0-alpha",
   "type": "yii2-extension",
   "license": "MIT",
