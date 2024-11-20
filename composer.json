@@ -4,6 +4,12 @@
   "version": "1.0.0-alpha",
   "type": "yii2-extension",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Rodrigo Passos",
+      "homepage": "https://rodrigopassos.com",
+    }
+  ],
   "keywords": [
     "craft",
     "cms",
