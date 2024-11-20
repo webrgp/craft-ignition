@@ -2,6 +2,8 @@
 
 Error handling alternative for Craft CMS that uses [Ignition](https://github.com/spatie/ignition) for better developer experience.
 
+![Screenshot of ignition](https://spatie.github.io/ignition/ignition.png)
+
 ## Requirements
 
 - Craft CMS 4.3.0 or higher
