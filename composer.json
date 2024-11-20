@@ -1,0 +1,47 @@
+{
+  "name": "webrgp/craft-ignition",
+  "description": "Error handling alternative for Craft CMS that uses Ignition for better developer experience.",
+  "version": "1.0.0-alpha",
+  "type": "yii2-extension",
+  "license": "MIT",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "error",
+    "error-reporting",
+    "ignition",
+    "php"
+  ],
+  "require": {
+    "php": "^8.0",
+    "craftcms/cms": "^4.3.0 || ^5.0.0",
+    "spatie/ignition": "^1.15"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main",
+    "craftcms/rector": "dev-main",
+    "vlucas/phpdotenv": "^5.4.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "webrgp\\ignition\\": "src/"
+    }
+  },
+  "scripts": {
+    "phpstan": "phpstan --ansi --memory-limit=1G",
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --fix --ansi"
+  },
+  "config": {
+    "allow-plugins": {
+      "craftcms/plugin-installer": true,
+      "yiisoft/yii2-composer": true
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}
