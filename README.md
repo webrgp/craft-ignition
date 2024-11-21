@@ -17,19 +17,6 @@ You can install the plugin via Composer:
 composer require webrgp/craft-ignition
 ```
 
-Then, in you can replace the default error handler in your `config/app.php` file:
-
-```php
-return [
-    // ...
-    'components' => [
-        'errorHandler' => [
-            'class' => \webrgp\ignition\IgnitionErrorHandler::class,
-        ],
-    ],
-];
-```
-
 That's it! Now you can enjoy Ignition's beautiful error pages in your Craft CMS project.
 
 ## Customizing Ignition
