@@ -1,6 +1,6 @@
 <?php
 
-namespace webrgp\ignition;
+namespace webrgp\ignition\web;
 
 use Craft;
 use craft\helpers\App;

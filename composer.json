@@ -48,5 +48,8 @@
     },
     "optimize-autoloader": true,
     "sort-packages": true
+  },
+  "extra": {
+    "bootstrap": "webrgp\\ignition\\Ignition"
   }
 }
