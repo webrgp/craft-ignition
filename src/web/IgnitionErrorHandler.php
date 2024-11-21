@@ -1,6 +1,6 @@
 <?php
 
-namespace webrgp\ignition;
+namespace webrgp\ignition\web;
 
 use Craft;
 use craft\helpers\App;
@@ -31,7 +31,7 @@ class IgnitionErrorHandler extends \craft\web\ErrorHandler
     public ?bool $hideSolutions = null;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function renderException($exception): void
     {
@@ -40,6 +40,7 @@ class IgnitionErrorHandler extends \craft\web\ErrorHandler
         // Return JSON for JSON requests
         if ($request && $request->getAcceptsJson()) {
             parent::renderException($exception);
+
             return;
         }
 
@@ -57,6 +58,7 @@ class IgnitionErrorHandler extends \craft\web\ErrorHandler
         // or if the user is an admin and has indicated they want to see it
         elseif ($this->showExceptionDetails()) {
             $this->getIgnition()->handleException($exception);
+
             return;
         }
 
