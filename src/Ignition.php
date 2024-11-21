@@ -4,15 +4,15 @@ namespace webrgp\ignition;
 
 use craft\console\Application as CraftConsoleApp;
 use craft\web\Application as CraftWebApp;
-use yii\base\BootstrapInterface;
 use webrgp\ignition\web\IgnitionErrorHandler;
+use yii\base\BootstrapInterface;
 
 class Ignition implements BootstrapInterface
 {
     /**
      * Bootstraps the application by registering the Ignition error handler.
      *
-     * @param \yii\base\Application $app The application instance.
+     * @param  \yii\base\Application  $app  The application instance.
      *
      * Only bootstraps if the application is an instance of CraftWebApp or CraftConsoleApp.
      * Registers the Ignition error handler and sets it to the application's errorHandler component.
