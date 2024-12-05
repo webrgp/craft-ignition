@@ -15,9 +15,12 @@ You can install the plugin via Composer:
 
 ```bash
 composer require webrgp/craft-ignition
+
+# OR if you only want to use it in development
+composer require webrgp/craft-ignition --dev
 ```
 
-That's it! Now you can enjoy Ignition's beautiful error pages in your Craft CMS project.
+This extension will bootstrap itself automatically once installed. Now you can enjoy Ignition's beautiful error pages in your Craft CMS project.
 
 ## Customizing Ignition
 
