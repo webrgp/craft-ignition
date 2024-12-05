@@ -4,6 +4,7 @@ NOTES.md
 .env
 
 # COMPOSER
+composer.lock
 vendor
 
 # MISC FILES
