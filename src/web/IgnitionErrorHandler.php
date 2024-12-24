@@ -10,6 +10,12 @@ use yii\web\NotFoundHttpException;
 
 class IgnitionErrorHandler extends \craft\web\ErrorHandler
 {
+
+    /**
+     * @inheritdoc
+     */
+    public $exceptionView = '@webrgp/ignition/web/views/exception.php';
+
     // Public Properties
     // ========================================================================
     public ?string $editor = null;
@@ -30,39 +36,9 @@ class IgnitionErrorHandler extends \craft\web\ErrorHandler
 
     public ?bool $hideSolutions = null;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function renderException($exception): void
+    public function renderIgnition($exception): void
     {
-        $request = Craft::$app->has('request', true) ? Craft::$app->getRequest() : null;
-
-        // Return JSON for JSON requests
-        if ($request && $request->getAcceptsJson()) {
-            parent::renderException($exception);
-
-            return;
-        }
-
-        // Show a broken image for image requests
-        if (
-            $exception instanceof NotFoundHttpException &&
-            $request &&
-            $request->getAcceptsImage() &&
-            Craft::$app->getConfig()->getGeneral()->brokenImagePath
-        ) {
-            $this->errorAction = 'app/broken-image';
-        }
-
-        // Show the full exception view for all exceptions when Dev Mode is enabled (don't skip `UserException`s)
-        // or if the user is an admin and has indicated they want to see it
-        elseif ($this->showExceptionDetails()) {
-            $this->getIgnition()->handleException($exception);
-
-            return;
-        }
-
-        parent::renderException($exception);
+        $this->getIgnition()->handleException($exception);
     }
 
     /**
