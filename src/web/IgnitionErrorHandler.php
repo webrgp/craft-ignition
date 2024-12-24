@@ -6,11 +6,9 @@ use Craft;
 use craft\helpers\App;
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition;
-use yii\web\NotFoundHttpException;
 
 class IgnitionErrorHandler extends \craft\web\ErrorHandler
 {
-
     /**
      * @inheritdoc
      */
