@@ -2,13 +2,11 @@
 
 namespace webrgp\ignition\models;
 
-use Craft;
 use craft\base\Model;
 use Spatie\Ignition\Config\IgnitionConfig;
 
 class IgnitionSettings extends Model
 {
-
     /**
      * @const array Themes
      */
@@ -105,7 +103,7 @@ class IgnitionSettings extends Model
     {
         $editor = strtolower($value);
 
-        $igitionConfig = (new IgnitionConfig)->toArray();
+        $igitionConfig = (new IgnitionConfig())->toArray();
         $editorOptions = array_keys($igitionConfig['editorOptions']) ?? null;
 
         // check if the editor is valid

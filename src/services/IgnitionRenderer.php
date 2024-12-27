@@ -10,15 +10,14 @@ use Spatie\FlareClient\FlareMiddleware\CensorRequestBodyFields;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestHeaders;
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition as SpatieIgnition;
-use webrgp\ignition\Ignition;
-use webrgp\ignition\models\IgnitionSettings;
 use Throwable;
+use webrgp\ignition\Ignition;
 use webrgp\ignition\middleware\AddCraftInfo;
 use webrgp\ignition\middleware\CraftSensitiveKeywords;
+use webrgp\ignition\models\IgnitionSettings;
 
 class IgnitionRenderer extends Component
 {
-
     private ?\Spatie\Ignition\Ignition $ignition = null;
 
     // Public Methods
@@ -92,7 +91,7 @@ class IgnitionRenderer extends Component
             ->applicationPath($this->applicationPath)
             ->shouldDisplayException(App::devMode())
             ->runningInProductionEnvironment(false)
-            ->configureFlare(function (Flare $flare) use ($middlewares) {
+            ->configureFlare(function(Flare $flare) use ($middlewares) {
                 $flare->registerMiddleware($middlewares);
             });
     }
