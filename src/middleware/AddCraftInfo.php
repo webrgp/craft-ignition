@@ -6,8 +6,8 @@ use Composer\InstalledVersions;
 use Craft;
 use craft\base\PluginInterface;
 use craft\helpers\App;
-use Spatie\FlareClient\Report;
 use OutOfBoundsException;
+use Spatie\FlareClient\Report;
 use yii\base\Module;
 
 class AddCraftInfo
