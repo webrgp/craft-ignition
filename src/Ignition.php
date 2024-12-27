@@ -59,12 +59,11 @@ class Ignition extends Module implements BootstrapInterface
         // Configure our module
         $this->configureModule();
 
-        if (YII_ENABLE_ERROR_HANDLER) {
-            $app->set('errorHandler', [
-                'class' => IgnitionErrorHandler::class,
-            ]);
-            $app->getErrorHandler()->register();
-        }
+        $app->set('errorHandler', [
+            'class' => IgnitionErrorHandler::class,
+        ]);
+
+        $app->getErrorHandler()->register();
 
         Craft::info('Ignition module bootstrapped', __METHOD__);
     }

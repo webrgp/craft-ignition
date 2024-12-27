@@ -114,6 +114,6 @@ class IgnitionSettings extends Model
         }
 
         // return the default editor
-        return $igitionConfig->editor ?? 'vscode';
+        return 'vscode';
     }
 }

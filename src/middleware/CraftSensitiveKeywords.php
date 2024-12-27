@@ -11,7 +11,7 @@ class CraftSensitiveKeywords
     {
         $context = $report->allContext();
 
-        if (Craft::$app && isset($context['request_data']['body'])) {
+        if (isset($context['request_data']['body'])) {
             $security = Craft::$app->getSecurity();
             $bodyParams = $context['request_data']['body'];
             foreach ($bodyParams as $key => $value) {

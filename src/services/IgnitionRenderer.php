@@ -6,7 +6,6 @@ use Craft;
 use craft\base\Component;
 use craft\helpers\App;
 use Spatie\FlareClient\Flare;
-use Spatie\FlareClient\FlareMiddleware\AddGitInformation;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestBodyFields;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestHeaders;
 use Spatie\Ignition\Config\IgnitionConfig;
@@ -16,12 +15,11 @@ use webrgp\ignition\models\IgnitionSettings;
 use Throwable;
 use webrgp\ignition\middleware\AddCraftInfo;
 use webrgp\ignition\middleware\CraftSensitiveKeywords;
-use webrgp\ignition\middleware\RemoveAllRequestIp;
 
 class IgnitionRenderer extends Component
 {
 
-    private ?SpatieIgnition $ignition = null;
+    private ?\Spatie\Ignition\Ignition $ignition = null;
 
     // Public Methods
     // =========================================================================
@@ -81,7 +79,7 @@ class IgnitionRenderer extends Component
      * determines whether exceptions should be displayed based on the development mode,
      * and specifies that the application is not running in a production environment.
      *
-     * @return Ignition The configured Ignition instance.
+     * @return SpatieIgnition The configured Ignition instance.
      */
     private function initIgnition(): SpatieIgnition
     {
