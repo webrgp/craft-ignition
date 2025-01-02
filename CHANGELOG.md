@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.1.1 - 2025-01-02
+
+- Enhance code formatting by removing unused middleware and adjusting function syntax in the IgnitionRenderer.
+
 ## 1.0.1 - 2025-01-02
 
 - Refactor the `IgnitionRenderer` for improved code clarity and remove unused middleware.
