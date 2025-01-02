@@ -16,33 +16,18 @@ class AddCraftInfo
 
     public function __construct()
     {
-        $modules = [];
-        foreach (Craft::$app->getModules() as $id => $module) {
-            if ($module instanceof PluginInterface) {
-                continue;
-            }
-            if ($module instanceof Module) {
-                $modules[$id] = get_class($module);
-            } elseif (is_string($module)) {
-                $modules[$id] = $module;
-            } elseif (is_array($module) && isset($module['class'])) {
-                $modules[$id] = $module['class'];
-            } else {
-                $modules[$id] = Craft::t('app', 'Unknown type');
-            }
-        }
-
         $this->info = [
             'appInfo' => self::_appInfo(),
-            'plugins' => Craft::$app->getPlugins()->getAllPlugins(),
-            'modules' => $modules,
+            'plugins' => self::_craftPlugins(),
+            'modules' => self::_craftModules(),
         ];
     }
 
     public function handle(Report $report, $next)
     {
+        $report->setApplicationVersion($this->info["appInfo"]["Craft edition & version"]);
+        // Craft::dd($report);
         foreach ($this->info as $key => $value) {
-            # code...
             $report->group($key, $value);
         }
 
@@ -78,6 +63,34 @@ class AddCraftInfo
         }
 
         return $info;
+    }
+
+    private static function _craftPlugins(): array
+    {
+        return collect(Craft::$app->getPlugins()->getAllPlugins())
+            ->mapWithKeys(function(PluginInterface $plugin) {
+                return [$plugin->name => $plugin->version];
+            })
+            ->toArray();
+    }
+
+    private static function _craftModules(): array
+    {
+        return collect(Craft::$app->getModules())
+            ->filter(fn($module) => !($module instanceof PluginInterface))
+            ->mapWithKeys(function($module, $id) {
+                if ($module instanceof Module) {
+                    return [$id => get_class($module)];
+                }
+                if (is_string($module)) {
+                    return [$id => $module];
+                }
+                if (is_array($module) && isset($module['class'])) {
+                    return [$id => $module['class']];
+                }
+                return [$id => Craft::t('app', 'Unknown type')];
+            })
+            ->toArray();
     }
 
     /**
