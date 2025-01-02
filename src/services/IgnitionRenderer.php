@@ -6,7 +6,6 @@ use Craft;
 use craft\base\Component;
 use craft\helpers\App;
 use Spatie\FlareClient\Flare;
-use Spatie\FlareClient\FlareMiddleware\CensorRequestBodyFields;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestHeaders;
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition as SpatieIgnition;
@@ -91,7 +90,7 @@ class IgnitionRenderer extends Component
             ->applicationPath($this->applicationPath)
             ->shouldDisplayException(App::devMode())
             ->runningInProductionEnvironment(false)
-            ->configureFlare(function (Flare $flare) use ($middlewares) {
+            ->configureFlare(function(Flare $flare) use ($middlewares) {
                 $flare->registerMiddleware($middlewares);
             });
     }
