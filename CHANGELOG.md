@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.1 - 2025-01-02
+
+- Refactor the `IgnitionRenderer` for improved code clarity and remove unused middleware.
+- Update the `README.md` to provide better documentation on the IgnitionErrorHandler and middleware functionality.
+
 ## 1.0.0 - 2025-01-02
 
 - Initial stable release

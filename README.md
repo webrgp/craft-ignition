@@ -37,35 +37,60 @@ CRAFT_IGNITION_ENABLE_RUNNABLE_SOLUTIONS=true
 CRAFT_IGNITION_HIDE_SOLUTIONS=false
 ```
 
-Or directly to the component, in your `config/app.php` file:
+## How It Works
+
+This package introduces the `IgnitionErrorHandler` class, which extends Craft's default `ErrorHandler` class. It overrides the `$exceptionView` property to use this package's custom exception view file, which renders Ignition's error page.
+
+## Flare Middleware
+
+This package also includes a few middleware classes that add Craft specific data to the Ignition error report and prevent Ignition from sharing sensitive information with Flare:
+
+### AddCraftInfo middleware
+
+This middleware Application Info, Plugins, and Modules information present in Craft's System Report to the Ignition's and Flare's error report.
+
+### CraftSensitiveKeywords middleware
+
+This middleware prevents Ignition from sharing sensitive information with Flare. It removes sensitive information from the error report before sharing it with Flare by testing each body parameter against Craft Security's [isSensitive](https://github.com/craftcms/cms/blob/2b2de25bfac0e359bcae62e0e6995bfdb4229eaa/src/services/Security.php#L176-L178) method.
+
+You can customize the sensitive keywords by overriding the `sensitiveKeywords` in the Security component of the Craft app config:
 
 ```php
 return [
-    // ...
     'components' => [
-        'errorHandler' => [
-            'class' => \webrgp\ignition\IgnitionErrorHandler::class,
-            'editor' => 'vscode',
-            'theme' => 'light',
-            'remote_sites_path' => '\your\remote\sites\path',
-            'local_sites_path' => '\your\local\sites\path',
-            'shareEndpoint' => 'https://flareapp.io/api/public-reports',
-            'enableShareButton' => false,
-            'enableRunnableSolutions' => false,
-            'hideSolutions' => true,
-            'editorOptions' => [],
+        'security' => [
+            'class' => \craft\services\Security::class,
+            'sensitiveKeywords' => [
+                'lorem',
+            ],
         ],
-    ],
+    ]
 ];
 ```
 
-**Note:** The settings in the `config/app.php` file will override the ones in the `.env` file.
+[These are the default sensitive keywords](https://github.com/craftcms/cms/blob/2b2de25bfac0e359bcae62e0e6995bfdb4229eaa/src/config/app.php#L112-L121) in Craft CMS.
 
-## How It Works
+### Censored Headers middleware
 
-This package introduces the `IgnitionErrorHandler` class, which extends Craft's default `ErrorHandler` class. It overrides the `renderException` method to use Ignition's `renderException` method instead.
+Besides the sensitive keywords, this module also censors the following headers from the error report:
 
-This way, you can enjoy Ignition's beautiful error pages while keeping the rest of Craft's error handling functionality in place.
+- `API-KEY`
+- `Authorization`
+- `Cookie`
+- `Set-Cookie`
+- `X-CSRF-TOKEN`
+- `X-XSRF-TOKEN`
+- `ip`
+- `x-forwarded-for`
+- `x-real-ip`
+- `x-request-ip`
+- `x-client-ip`
+- `cf-connecting-ip`
+- `fastly-client-ip`
+- `true-client-ip`
+- `forwarded`
+- `proxy-client-ip`
+- `wl-proxy-client-ip`
 
 ## License
 

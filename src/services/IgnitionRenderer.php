@@ -91,7 +91,7 @@ class IgnitionRenderer extends Component
             ->applicationPath($this->applicationPath)
             ->shouldDisplayException(App::devMode())
             ->runningInProductionEnvironment(false)
-            ->configureFlare(function(Flare $flare) use ($middlewares) {
+            ->configureFlare(function (Flare $flare) use ($middlewares) {
                 $flare->registerMiddleware($middlewares);
             });
     }
@@ -100,7 +100,6 @@ class IgnitionRenderer extends Component
     {
         return [
             new AddCraftInfo(),
-            new CensorRequestBodyFields(['password', 'password_confirmation']),
             new CensorRequestHeaders([
                 'API-KEY',
                 'Authorization',
