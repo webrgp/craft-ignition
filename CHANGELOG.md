@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 - 2025-01-02
+
+- Initial stable release
+- Enhance Ignition module with configuration and middleware improvements by @webrgp
+
 ## 1.0.0-beta-1 - 2024-12-25
 
 - Add `src/web/views/exception.php` view file, to render the exception page
