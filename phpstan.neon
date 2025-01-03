@@ -3,5 +3,8 @@ includes:
 
 parameters:
     level: 5
+    editorUrl: 'vscode://file/%%file%%:%%line%%'
+    editorUrlTitle: '%%relFile%%:%%line%%'
+    reportUnmatchedIgnoredErrors: false
     paths:
         - src
