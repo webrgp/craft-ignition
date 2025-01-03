@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.2 - 2025-01-02
+
+- Fix Craft 4 compatibility issue on `AddCraftInfo` middleware.
+
 ## 1.0.1.1 - 2025-01-02
 
 - Enhance code formatting by removing unused middleware and adjusting function syntax in the IgnitionRenderer.
