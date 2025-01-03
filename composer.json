@@ -51,5 +51,10 @@
   },
   "extra": {
     "bootstrap": "webrgp\\ignition\\Ignition"
+  },
+  "support": {
+    "issues": "https://github.com/webrgp/craft-ignition/issues?state=open",
+    "source": "https://github.com/webrgp/craft-ignition",
+    "docs": "https://github.com/webrgp/craft-ignition/blob/master/README.md"
   }
 }
