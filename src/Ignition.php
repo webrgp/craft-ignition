@@ -49,7 +49,7 @@ class Ignition extends Module implements BootstrapInterface
     public function bootstrap($app)
     {
         // Only bootstrap if this is a CraftWebApp
-        if (!($app instanceof CraftWebApp || $app instanceof CraftConsoleApp)) {
+        if (!($app instanceof CraftWebApp)) {
             return;
         }
 
