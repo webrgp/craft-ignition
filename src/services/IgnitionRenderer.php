@@ -95,6 +95,15 @@ class IgnitionRenderer extends Component
             });
     }
 
+    /**
+     * Returns an array of Flare middlewares.
+     *
+     * This method returns an array of Flare middlewares that are used to modify the
+     * data that is sent to Flare. The middlewares are used to censor sensitive data
+     * and add Craft-specific information to the report.
+     *
+     * @return array<FlareMiddleware>
+     */
     private static function getFlareMiddlewares(): array
     {
         return [
