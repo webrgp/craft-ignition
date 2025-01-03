@@ -7,10 +7,10 @@ use craft\base\Component;
 use craft\helpers\App;
 use Spatie\FlareClient\Flare;
 use Spatie\FlareClient\FlareMiddleware\CensorRequestHeaders;
+use Spatie\FlareClient\FlareMiddleware\FlareMiddleware;
 use Spatie\Ignition\Config\IgnitionConfig;
 use Spatie\Ignition\Ignition as SpatieIgnition;
 use Throwable;
-use webrgp\ignition\Ignition;
 use webrgp\ignition\middleware\AddCraftInfo;
 use webrgp\ignition\middleware\CraftSensitiveKeywords;
 use webrgp\ignition\models\IgnitionSettings;
@@ -22,7 +22,7 @@ class IgnitionRenderer extends Component
     // Public Methods
     // =========================================================================
 
-    public array $ignitionConfig = [];
+    public IgnitionConfig $ignitionConfig;
 
     public ?string $applicationPath = null;
 
@@ -38,9 +38,9 @@ class IgnitionRenderer extends Component
         parent::init();
     }
 
-    public function handleException(Throwable $exception): void
+    public function handleException(Throwable $throwable): void
     {
-        $this->ignition->handleException($exception);
+        $this->ignition->renderException($throwable);
     }
 
     /**
@@ -48,10 +48,8 @@ class IgnitionRenderer extends Component
      *
      * This method collects various configuration settings for Ignition from the class properties
      * or environment variables. It filters out any null values and returns the resulting array.
-     *
-     * @return array The Ignition configuration settings.
      */
-    private function getIgnitionConfig(): array
+    private function getIgnitionConfig(): IgnitionConfig
     {
         $config = new IgnitionSettings([
             'editor' => App::env('CRAFT_IGNITION_EDITOR') ?? null,
@@ -66,7 +64,7 @@ class IgnitionRenderer extends Component
 
         $config = array_filter($config->toArray(), fn($value) => $value !== null);
 
-        return $config;
+        return new IgnitionConfig($config);
     }
 
     /**
@@ -76,13 +74,11 @@ class IgnitionRenderer extends Component
      * and applies the configuration if available. It also sets the application path,
      * determines whether exceptions should be displayed based on the development mode,
      * and specifies that the application is not running in a production environment.
-     *
-     * @return SpatieIgnition The configured Ignition instance.
      */
     private function initIgnition(): SpatieIgnition
     {
         $ignition = SpatieIgnition::make();
-        $ignition->setConfig(new IgnitionConfig($this->ignitionConfig));
+        $ignition->setConfig($this->ignitionConfig);
 
         $middlewares = self::getFlareMiddlewares();
 
