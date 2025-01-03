@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.3 - 2025-01-03
+
+- Improve type hinting and code formatting everywhere.
+- Fix PHPStan issues.
+
 ## 1.0.2 - 2025-01-02
 
 - Fix Craft 4 compatibility issue on `AddCraftInfo` middleware.
