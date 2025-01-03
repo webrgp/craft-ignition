@@ -2,12 +2,14 @@
 
 namespace webrgp\ignition\middleware;
 
+use Closure;
 use Craft;
+use Spatie\FlareClient\FlareMiddleware\FlareMiddleware;
 use Spatie\FlareClient\Report;
 
-class CraftSensitiveKeywords
+class CraftSensitiveKeywords implements FlareMiddleware
 {
-    public function handle(Report $report, $next)
+    public function handle(Report $report, Closure $next)
     {
         $context = $report->allContext();
 
