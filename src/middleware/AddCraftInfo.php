@@ -41,12 +41,16 @@ class AddCraftInfo
      */
     private static function _appInfo(): array
     {
+        $craftEdition = version_compare(Craft::$app->getVersion(), '5.0.0', '<')
+            ? App::editionName(Craft::$app->getEdition())
+            : Craft::$app->edition->name;
+
         $info = [
             'PHP version' => App::phpVersion(),
             'OS version' => PHP_OS . ' ' . php_uname('r'),
             'Database driver & version' => self::_dbDriver(),
             'Image driver & version' => self::_imageDriver(),
-            'Craft edition & version' => sprintf('Craft %s %s', Craft::$app->edition->name, Craft::$app->getVersion()),
+            'Craft edition & version' => sprintf('Craft %s %s', $craftEdition, Craft::$app->getVersion()),
         ];
 
         if (!class_exists(InstalledVersions::class, false)) {
