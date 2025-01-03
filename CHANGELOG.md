@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Improve type hinting and code formatting everywhere.
 - Fix PHPStan issues.
+- Update `composer.json` with support links.
 
 ## 1.0.2 - 2025-01-02
 
