@@ -2,28 +2,36 @@
 
 namespace webrgp\ignition\middleware;
 
+use Closure;
 use Composer\InstalledVersions;
 use Craft;
 use craft\base\PluginInterface;
 use craft\helpers\App;
 use OutOfBoundsException;
+use Spatie\FlareClient\FlareMiddleware\FlareMiddleware;
 use Spatie\FlareClient\Report;
 use yii\base\Module;
 
-class AddCraftInfo
+class AddCraftInfo implements FlareMiddleware
 {
     protected array $info = [];
 
     public function __construct()
     {
-        $this->info = [
+        $info = collect([
             'appInfo' => self::_appInfo(),
             'plugins' => self::_craftPlugins(),
             'modules' => self::_craftModules(),
-        ];
+        ])
+            ->filter(function($value) {
+                return !empty($value);
+            })
+            ->toArray();
+
+        $this->info = $info;
     }
 
-    public function handle(Report $report, $next)
+    public function handle(Report $report, Closure $next)
     {
         $report->setApplicationVersion($this->info["appInfo"]["Craft edition & version"]);
         // Craft::dd($report);
@@ -41,16 +49,24 @@ class AddCraftInfo
      */
     private static function _appInfo(): array
     {
-        $craftEdition = version_compare(Craft::$app->getVersion(), '5.0.0', '<')
-            ? App::editionName(Craft::$app->getEdition())
-            : Craft::$app->edition->name;
+        $craftEdition = Craft::$app->edition;
+        $craftVersion = Craft::$app->getVersion();
+
+        if (version_compare($craftVersion, '5.0.0', '>=')) {
+            // @phpstan-ignore property.nonObject
+            $craftEdition = $craftEdition->name;
+        }
+
+        if (version_compare($craftVersion, '5.0.0', '<')) {
+            $craftEdition = App::editionName((int) $craftEdition);
+        }
 
         $info = [
             'PHP version' => App::phpVersion(),
             'OS version' => PHP_OS . ' ' . php_uname('r'),
             'Database driver & version' => self::_dbDriver(),
             'Image driver & version' => self::_imageDriver(),
-            'Craft edition & version' => sprintf('Craft %s %s', $craftEdition, Craft::$app->getVersion()),
+            'Craft edition & version' => sprintf('Craft %s %s', $craftEdition, $craftVersion),
         ];
 
         if (!class_exists(InstalledVersions::class, false)) {
