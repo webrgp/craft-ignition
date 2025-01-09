@@ -99,7 +99,7 @@ Besides the sensitive keywords, this module also censors the following headers f
 
 ## Acknowledgements
 
-Thanks to @khalwat for sharing [nystudio107/plugindev] with me!
+Thanks to [Andrew Welch](https://github.com/khalwat) for sharing his [nystudio107/plugindev](https://github.com/nystudio107/plugindev) with me!
 
 ## License
 
