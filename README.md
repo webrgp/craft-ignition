@@ -92,6 +92,15 @@ Besides the sensitive keywords, this module also censors the following headers f
 - `proxy-client-ip`
 - `wl-proxy-client-ip`
 
+## Roadmap
+
+- [ ] Add environment variable to disable Craft Ignition.
+- [ ] Add Craft-specific solutions to Ignition.
+
+## Acknowledgements
+
+Thanks to @khalwat for sharing [nystudio107/plugindev] with me!
+
 ## License
 
 This plugin is open-sourced software licensed under the MIT license.
