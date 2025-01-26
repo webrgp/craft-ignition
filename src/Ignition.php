@@ -3,7 +3,6 @@
 namespace webrgp\ignition;
 
 use Craft;
-use craft\console\Application as CraftConsoleApp;
 use craft\web\Application as CraftWebApp;
 use webrgp\ignition\services\IgnitionRenderer;
 use webrgp\ignition\web\IgnitionErrorHandler;
@@ -61,6 +60,7 @@ class Ignition extends Module implements BootstrapInterface
 
         $app->set('errorHandler', [
             'class' => IgnitionErrorHandler::class,
+            'errorAction' => 'templates/render-error',
         ]);
 
         $app->getErrorHandler()->register();
