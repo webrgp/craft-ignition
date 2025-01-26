@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.4 - 2025-01-26
+
+- Fix missing error action template on 404 errors. #13
+
 ## 1.0.3 - 2025-01-03
 
 - Improve type hinting and code formatting everywhere.
