@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.7 - 2025-06-19
+
+- Add svg icon.
+
+## 1.0.6 - 2025-06-19
+
+- Updates to comply plugin store requirements.
+
 ## 1.0.5 - 2025-06-19
 
 - Update `composer.json` to require `webrgp/craft-ignition-core` version `^1.1.0`.
