@@ -1,7 +1,7 @@
 {
   "name": "webrgp/craft-ignition",
   "description": "Ignition error handling alternative for Craft CMS.",
-  "type": "yii2-extension",
+  "type": "craft-plugin",
   "license": "MIT",
   "authors": [
     {
@@ -19,27 +19,15 @@
     "php"
   ],
   "require": {
-    "php": "^8.0",
     "craftcms/cms": "^4.3.0 || ^5.0.0",
-    "spatie/ignition": "^1.15"
-  },
-  "require-dev": {
-    "craftcms/ecs": "dev-main",
-    "craftcms/phpstan": "dev-main",
-    "craftcms/rector": "dev-main",
-    "vlucas/phpdotenv": "^5.4.0"
+    "webrgp/craft-ignition-core": "^1.1.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "webrgp\\ignition\\": "src/"
+      "webrgp\\ignitionplugin\\": "src/"
     }
-  },
-  "scripts": {
-    "phpstan": "phpstan --ansi --memory-limit=1G",
-    "check-cs": "ecs check --ansi",
-    "fix-cs": "ecs check --fix --ansi"
   },
   "config": {
     "allow-plugins": {
@@ -50,7 +38,10 @@
     "sort-packages": true
   },
   "extra": {
-    "bootstrap": "webrgp\\ignition\\Ignition"
+    "name": "Ignition",
+    "handle": "ignition",
+    "changelogUrl": "#",
+    "class": "webrgp\\ignitionplugin\\Ignition"
   },
   "support": {
     "issues": "https://github.com/webrgp/craft-ignition/issues?state=open",
