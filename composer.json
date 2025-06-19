@@ -2,7 +2,7 @@
   "name": "webrgp/craft-ignition",
   "description": "Ignition error handling alternative for Craft CMS.",
   "type": "craft-plugin",
-  "license": "MIT",
+  "license": "mit",
   "authors": [
     {
       "name": "Rodrigo Passos",
@@ -40,7 +40,9 @@
   "extra": {
     "name": "Ignition",
     "handle": "ignition",
-    "changelogUrl": "#",
+    "developer": "Rodrigo Passos",
+    "developerUrl": "https://rodrigopassos.com/",
+    "changelogUrl": "https://raw.githubusercontent.com/webrgp/craft-ignition/main/CHANGELOG.md",
     "class": "webrgp\\ignitionplugin\\Ignition"
   },
   "support": {

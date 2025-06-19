@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.6 - 2025-06-19
+
+- Minox plugin tweaks
+
+## 1.0.5 - 2025-06-19
+
+- Update `composer.json` to require `webrgp/craft-ignition-core` version `^1.1.0`.
+
 ## 1.0.4 - 2025-01-26
 
 - Fix missing error action template on 404 errors. #13
